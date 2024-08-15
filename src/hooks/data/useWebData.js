@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import reactjs from "../../media/icons/react-js.png";
 import csharp from "../../media/icons/c-sharp.png";
