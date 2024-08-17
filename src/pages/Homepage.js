@@ -239,6 +239,37 @@ function Hompage() {
         content={
           <>
             <main className="h-full grid grid-cols-5 pb-5 overflow-hidden">
+              <section className="h-full col-span-2 p-3">
+                {/* Projects */}
+                {data.project.list.map((item, i) => (
+                  <ItemListCard
+                    class={`bg-slate-700 hover:bg-slate-600 border-2 border-slate-700`}
+                    action={() => {
+                      setProjectDeets({
+                        project: item.project,
+                        title: item.title,
+                        techs: item.techs,
+                        details: item.details,
+                        image: item.image,
+                      });
+                    }}
+                    project={item.project}
+                    title={item.title}
+                    techs={item.techs.map((tech, o) => (
+                      <li>
+                        <main className="border-2 border-slate-700 rounded px-1">
+                          <section>
+                            <p className="text-slate-500 font-semibold">
+                              {tech}
+                            </p>
+                          </section>
+                        </main>
+                      </li>
+                    ))}
+                  />
+                ))}
+                {/* Projects */}
+              </section>
               <section className="col-span-3 p-3">
                 <main className="h-full bg-slate-900 rounded p-5">
                   {project_deets.project !== undefined ? (
@@ -278,37 +309,6 @@ function Hompage() {
                     <NoDisplay details={`Click a project to view details.`} />
                   )}
                 </main>
-              </section>
-              <section className="h-full col-span-2 p-3">
-                {/* Projects */}
-                {data.project.list.map((item, i) => (
-                  <ItemListCard
-                    class={`bg-slate-700 hover:bg-slate-600 border-2 border-slate-700`}
-                    action={() => {
-                      setProjectDeets({
-                        project: item.project,
-                        title: item.title,
-                        techs: item.techs,
-                        details: item.details,
-                        image: item.image,
-                      });
-                    }}
-                    project={item.project}
-                    title={item.title}
-                    techs={item.techs.map((tech, o) => (
-                      <li>
-                        <main className="border-2 border-slate-700 rounded px-1">
-                          <section>
-                            <p className="text-slate-500 font-semibold">
-                              {tech}
-                            </p>
-                          </section>
-                        </main>
-                      </li>
-                    ))}
-                  />
-                ))}
-                {/* Projects */}
               </section>
             </main>
           </>
