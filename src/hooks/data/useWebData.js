@@ -7,6 +7,10 @@ import mysql from "../../media/icons/mysql.png";
 import github from "../../media/icons/github.png";
 import warning from "../../media/utility_icons/warning.png";
 import cyanrealms from "../../media/icons/experience/cyanrealms.png";
+import classkode from "../../media/projects/classkode.jfif";
+import { SiGmail } from "react-icons/si";
+import { SiFacebook } from "react-icons/si";
+import { SiGithub } from "react-icons/si";
 
 export default function useWebData() {
   const [data, setData] = useState({
@@ -17,6 +21,26 @@ export default function useWebData() {
       webname: "PoodFolio",
       owner: "Mark Lape",
       year: "2024",
+      featuredlinks: [
+        {
+          title: "Facebook",
+          type: "link",
+          icon: <SiFacebook />,
+          link: "https://www.facebook.com/RinkashimeTakanoku",
+        },
+        {
+          title: "Github",
+          type: "link",
+          icon: <SiGithub />,
+          link: "https://github.com/Poowd",
+        },
+        {
+          title: "G-Mail",
+          type: "email",
+          icon: <SiGmail />,
+          link: "lapemark11@gmail.com",
+        },
+      ],
     },
     stacks: {
       main: {
@@ -83,10 +107,11 @@ export default function useWebData() {
       list: [
         {
           project: "Class Kode",
-          title: "Scheduling System",
+          title: "Automated Class Scheduling System",
           details:
             "It is an automation of scheduling system for sti classes with the help of genetic algorithm along side forward-chain, etc.",
           techs: ["React JS", "Bootstrap 5.3"],
+          image: classkode,
         },
       ],
     },
