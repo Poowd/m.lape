@@ -8,10 +8,10 @@ export default class LinkButton extends React.Component {
         <button className={this.props.class}>
           <div
             className={`flex ${
-              this.props.icon === null ? `gap-0` : `gap-1`
+              this.props.icon === null ? `gap-0` : `gap-2`
             } justify-center items-center ${
               this.props.reversed === true ? "flex-row-reverse" : ""
-            }`}
+            } font-semibold uppercase`}
           >
             <div>{this.props.icon}</div>
             <div>{this.props.text}</div>

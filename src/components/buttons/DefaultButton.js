@@ -7,7 +7,7 @@ export default class DefaultButton extends React.Component {
         <div
           className={`flex ${
             this.props.icon === null ? `gap-0` : `gap-1`
-          } justify-center items-center`}
+          } justify-center items-center font-semibold uppercase`}
         >
           <div>{this.props.icon}</div>
           <div>{this.props.text}</div>

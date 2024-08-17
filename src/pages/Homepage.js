@@ -293,7 +293,15 @@ function Hompage() {
                             className="w-full rounded"
                           />
                         </figure>
-                        <section className="flex justify-end mt-3">
+                        <section className="flex justify-end mt-3 gap-3">
+                          <LinkButton
+                            link={`/`}
+                            target={null}
+                            icon={icons.liveview}
+                            reversed={true}
+                            text={"Live"}
+                            class={`${components.button.icon}`}
+                          />
                           <LinkButton
                             link={`/`}
                             target={null}

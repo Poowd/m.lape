@@ -5,7 +5,8 @@ export default function useComponents() {
     button: {
       default: "p-2 rounded",
       icon: "py-2 px-3 rounded",
-      bordericon: "py-2 px-3 rounded border-2",
+      bordericon:
+        "py-2 px-3 rounded border-2 border-opacity-30 border-slate-200",
     },
     container: {
       default: "px-40 py-0",
