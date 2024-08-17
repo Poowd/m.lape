@@ -1,20 +1,20 @@
 import { useState } from "react";
-import {
-  Description,
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
 import "./App.css";
 import DefaultButton from "./components/buttons/DefaultButton";
 import useComponents from "./hooks/ui/useComponents";
 import useWebData from "./hooks/data/useWebData";
 import useIcons from "./hooks/ui/useIcons";
 import useColour from "./hooks/ui/useColour";
-import "./css/Sizes.css";
-import "./css/Animation.css";
 import reactjs from "./media/icons/react-js.png";
 import dp from "./media/dp.jpg";
+import DefaultDialog from "./components/dialogs/DefaultDialog";
+import SquareCards from "./components/cards/SquareCards";
+import DefaultContent from "./components/layout/DefaultContent";
+import OneFourthContent from "./components/layout/OneFourthContent";
+import DefaultToast from "./components/toast/DefaultToast";
+import useToast from "./hooks/popups/useToast";
+import { ToastContainer, toast } from "react-toastify";
+import ItemListCard from "./components/cards/ItemListCard";
 
 function App() {
   const [components] = useComponents();
@@ -24,19 +24,23 @@ function App() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [stacks, setStack] = useState(false);
+  const [experience, setExperience] = useState(false);
   const [stacks_deets, setStackDeets] = useState({});
+  const [experiences_deets, setExperiencesDeets] = useState({});
+  const [project_deets, setProjectDeets] = useState({});
 
   return (
     <main>
-      <header className="bg-slate-800">
+      <header className="bg-red-700">
         <nav className="vh-5 w-full px-20 inline-flex justify-between items-center">
           <section>
-            <h1 className="text-slate-300 text-2xl font-bold">
+            <h1 className="text-slate-100 text-2xl font-bold">
               {data.general.webname}
             </h1>
           </section>
+          <section></section>
           <section>
-            <ul className="inline-flex gap-5 text-slate-500">
+            <ul className="inline-flex gap-5 text-slate-100">
               <li>
                 <h5>Home</h5>
               </li>
@@ -52,31 +56,70 @@ function App() {
             </ul>
           </section>
         </nav>
-        <main className="vh-95 bg-slate-100">
+        <main className="vh-95 bg-slate-900">
           <main className="h-full grid grid-cols-2">
             <section className="h-full flex justify-center items-center">
-              <main className="text-end slide-in-bck-left">
+              <main className="w-full flex flex-col items-end text-end slide-in-bck-left">
                 <header>
-                  <h5 className="text-3xl font-semibold">Hello,</h5>
-                  <h1 className="text-6xl font-bold">I'm a React Developer</h1>
+                  <h5 className="text-slate-500 text-3xl font-semibold uppercase">
+                    Hello,
+                  </h5>
+                  <h1 className="text-red-700 text-6xl font-extrabold uppercase">
+                    React Developer
+                  </h1>
                 </header>
-                <main>
-                  <section className="mt-3">
-                    <p>Wooooh! Let's design 101</p>
+                <main className="flex flex-col items-end">
+                  <section className="mt-3 flex flex-col items-end">
+                    <p className="w-3/4 text-slate-500">
+                      "Hi there! I’m
+                      <span className="font-semibold"> Mark Lape</span>, and I’m
+                      thrilled to share my journey as a computer science
+                      graduate. My passion for technology and programming has
+                      led me to work on diverse projects that challenge my
+                      skills and ignite my curiosity."
+                    </p>
+                  </section>
+                  <section className="mt-5">
+                    <main>
+                      <section>
+                        <ul className="flex gap-3">
+                          <li>
+                            <main className="border-2 border-slate-500 rounded px-4 py-2">
+                              <section>
+                                <p className="text-slate-500 font-semibold">
+                                  React JS
+                                </p>
+                              </section>
+                            </main>
+                          </li>
+                          <li>
+                            <main className="border-2 border-slate-500 rounded px-4 py-2">
+                              <section>
+                                <p className="text-slate-500 font-semibold">
+                                  Tailwind
+                                </p>
+                              </section>
+                            </main>
+                          </li>
+                        </ul>
+                      </section>
+                    </main>
                   </section>
                   <section className="mt-5">
                     <DefaultButton
-                      click={() => setIsOpen(true)}
+                      click={() => {
+                        setIsOpen(true);
+                      }}
                       icon={icons.alert}
                       text={`Button`}
-                      class={`${components.button.withicon} ${colour.background.primary}`}
+                      class={`${components.button.icon} ${colour.background.primary}`}
                     />
                   </section>
                 </main>
               </main>
             </section>
             <section className="h-full flex justify-center items-center">
-              <figure className="w-3/4 bg-slate-700 aspect-square rounded-full p-5 slide-in-bck-right">
+              <figure className="w-1/2 bg-slate-700 aspect-square rounded-full p-5 slide-in-bck-right">
                 <img
                   src={dp}
                   alt="..."
@@ -87,169 +130,208 @@ function App() {
           </main>
         </main>
       </header>
-      <main>
-        <section className="bg-slate-200">
-          <main className="px-40 py-20">
-            <header className="vh-5">
-              <main className="h-full flex items-center">
-                <section>
-                  <h1 className="text-4xl font-bold">Stacks</h1>
-                </section>
-              </main>
-            </header>
-            <section className="vh-95">
-              <main className="h-full grid grid-cols-3 pb-5">
-                <section className="col-span-1 p-3">
-                  <main className="h-full bg-slate-100 shadow-md rounded p-3">
-                    <section>
-                      <header>
-                        <section>
-                          <main className="flex justify-center">
-                            <section className="w-2/4">
-                              <figure className="p-5">
-                                <img
-                                  src={reactjs}
-                                  alt="..."
-                                  className="h-full w-full aspect-square object-contain drop-shadow-sm"
-                                />
-                              </figure>
-                            </section>
-                          </main>
-                        </section>
-                        <section className="text-center">
-                          <h3 className="text-3xl font-bold">
-                            React Developer
-                          </h3>
-                          <p className="text-sm">Front-End Web Developer</p>
-                        </section>
-                      </header>
-                    </section>
-                  </main>
-                </section>
-                <section className="col-span-2 p-3">
-                  <main className="h-full border-2 border-slate-300 rounded p-3">
-                    <section className="h-full">
-                      <main className="flex flex-wrap items-start gap-3">
-                        {/* Technology List */}
-                        {data.stacks.list.map((item, i) => (
-                          <section className="bg-slate-100 h-32 rounded aspect-square">
-                            <button
-                              onClick={() => {
-                                setStackDeets({
-                                  title: item.title,
-                                  description: item.description,
-                                  icon: item.icon,
-                                });
-                                setStack(true);
-                              }}
-                            >
-                              <figure className="">
-                                <img
-                                  src={item.icon}
-                                  alt="..."
-                                  className="h-full p-5 aspect-square object-contain drop-shadow-sm"
-                                />
-                              </figure>
-                            </button>
-                          </section>
-                        ))}
-                        {/* Technology List */}
-                      </main>
-                    </section>
-                  </main>
-                </section>
-              </main>
-            </section>
-          </main>
-        </section>
-      </main>
-      <main>
-        <section className="bg-slate-100">
-          <main className="px-40 py-20">
-            <main className="h-screen">
-              <h1>- worked with</h1>
-              <h1>- projects</h1>
-            </main>
-          </main>
-        </section>
-      </main>
-      <Dialog
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        className="relative z-50"
-      >
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <DialogTitle className="font-bold">Sample Modal</DialogTitle>
-            <Description>This is just sample modal.</Description>
-            <p>
-              Is this a sample modal? and are you sure that this is just a
-              sample and nother unusual?
-            </p>
-            <div className="flex gap-2">
-              <DefaultButton
-                click={() => setIsOpen(false)}
-                icon={null}
-                text={`Cancel`}
-                class={`${components.button.textonly} ${colour.background.neutral}`}
-              />
-              <DefaultButton
-                click={() => setIsOpen(false)}
-                icon={null}
-                text={`Deactivate`}
-                class={`${components.button.textonly} ${colour.background.primary}`}
-              />
-            </div>
-          </DialogPanel>
-        </div>
-      </Dialog>
-      <Dialog
-        open={stacks}
-        onClose={() => setStack(false)}
-        className="relative z-50"
-      >
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-slate-900 bg-opacity-30">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12 rounded jello-horizontal">
-            <main className="grid grid-cols-6">
-              <section className="col-span-2 p-3">
-                <main>
+      <DefaultContent
+        bgcolor={`bg-slate-800`}
+        class={``}
+        title={`Stacks`}
+        content={
+          <>
+            <main className="h-full grid grid-cols-3 pb-5">
+              <section className="col-span-1 p-3">
+                <main className="h-full bg-slate-900 rounded p-3">
                   <section>
-                    <figure className="w-full aspect-square">
-                      <img
-                        src={stacks_deets.icon}
-                        alt="..."
-                        className="h-full w-full object-contain"
-                      />
-                    </figure>
+                    <header>
+                      <section>
+                        <main className="flex justify-center">
+                          <section className="w-2/4">
+                            <figure className="p-5">
+                              <img
+                                src={reactjs}
+                                alt="..."
+                                className="h-full w-full aspect-square object-contain drop-shadow-sm"
+                              />
+                            </figure>
+                          </section>
+                        </main>
+                      </section>
+                      <section className="text-center">
+                        <h3 className="text-3xl font-bold text-cyan-500">
+                          React Developer
+                        </h3>
+                        <p className="text-sm text-cyan-700">
+                          Front-End Web Developer
+                        </p>
+                      </section>
+                    </header>
                   </section>
                 </main>
               </section>
-              <section className="col-span-4 p-3">
-                <div className="mb-3">
-                  <DialogTitle className="font-bold">
-                    {stacks_deets.title}
-                  </DialogTitle>
-                  <Description className={"italic"}>
-                    {stacks_deets.description}
-                  </Description>
-                </div>
-                <p>
-                  wow. amazing! that is so nice, o my gulay, don't touch my
-                  kulay.
-                </p>
-                <div className="flex justify-end gap-2 mt-5">
-                  <DefaultButton
-                    click={() => setStack(false)}
-                    icon={null}
-                    text={`Ok!`}
-                    class={`${components.button.textonly} ${colour.background.neutral} px-5`}
-                  />
-                </div>
+              <section className="col-span-2 p-3">
+                <main className="h-full">
+                  <section className="h-full">
+                    <main className="flex flex-wrap items-start gap-3">
+                      {/* Technology List */}
+                      {data.stacks.list.map((item, i) => (
+                        <SquareCards
+                          class={`bg-slate-700 hover:bg-slate-600`}
+                          action={() => {
+                            setStackDeets({
+                              title: item.title,
+                              description: item.description,
+                              details: item.details,
+                              icon: item.icon,
+                            });
+                            setStack(true);
+                          }}
+                          icon={item.icon}
+                        />
+                      ))}
+                      {/* Technology List */}
+                    </main>
+                  </section>
+                </main>
               </section>
             </main>
-          </DialogPanel>
-        </div>
-      </Dialog>
+          </>
+        }
+      />
+      <OneFourthContent
+        bgcolor={`bg-slate-900`}
+        class={`p-5`}
+        title={`Worked With`}
+        content={
+          <>
+            <main className="h-full flex justify-center items-center gap-3 overflow-x-auto overflow-y-hidden">
+              {/* Experiences List */}
+              {data.experience.list.map((item, i) => (
+                <SquareCards
+                  class={`bg-slate-800 hover:bg-slate-700`}
+                  action={() => {
+                    setExperiencesDeets({
+                      company: item.company,
+                      icon: item.icon,
+                      position: item.position,
+                      details: item.details,
+                    });
+                    setExperience(true);
+                  }}
+                  icon={item.icon}
+                />
+              ))}
+              {/* Experiences List */}
+            </main>
+          </>
+        }
+      />
+      <DefaultContent
+        bgcolor={`bg-slate-800`}
+        class={``}
+        title={`Projects`}
+        content={
+          <>
+            <main className="h-full grid grid-cols-5 pb-5">
+              <section className="col-span-3 p-3">
+                <main className="h-full bg-slate-900 rounded p-3">
+                  <section>
+                    <h1>{project_deets.project}</h1>
+                    <h3>{project_deets.title}</h3>
+                    <p>{project_deets.details}</p>
+                  </section>
+                </main>
+              </section>
+              <section className="h-full col-span-2 p-3">
+                {data.project.list.map((item, i) => (
+                  <ItemListCard
+                    class={`bg-slate-800 hover:bg-slate-700`}
+                    action={() => {
+                      setProjectDeets({
+                        project: item.project,
+                        title: item.title,
+                        techs: item.techs,
+                        details: item.details,
+                      });
+                    }}
+                    project={item.project}
+                    title={item.title}
+                    techs={item.techs.map((tech, o) => (
+                      <li>
+                        <main className="border-2 border-slate-500 rounded px-1">
+                          <section>
+                            <p className="text-slate-500 font-semibold">
+                              {tech}
+                            </p>
+                          </section>
+                        </main>
+                      </li>
+                    ))}
+                  />
+                ))}
+              </section>
+            </main>
+          </>
+        }
+      />
+      <DefaultDialog
+        open={isOpen}
+        close={() => setIsOpen(false)}
+        icon={data.utility_icons.warning}
+        title={`Sample Modal`}
+        description={`This is just sample modal.`}
+        details={`Is this a sample modal? and are you sure that this is just a
+              sample and nother unusual?`}
+        action={
+          <>
+            <DefaultButton
+              click={() => setIsOpen(false)}
+              icon={null}
+              text={`Cancel`}
+              class={`${components.button.default} ${colour.background.neutral}`}
+            />
+            <DefaultButton
+              click={() => setIsOpen(false)}
+              icon={null}
+              text={`Deactivate`}
+              class={`${components.button.default} ${colour.background.primary}`}
+            />
+          </>
+        }
+      />
+      <DefaultDialog
+        open={stacks}
+        close={() => setStack(false)}
+        icon={stacks_deets.icon}
+        title={stacks_deets.title}
+        description={stacks_deets.description}
+        details={stacks_deets.details}
+        action={
+          <>
+            <DefaultButton
+              click={() => setStack(false)}
+              icon={null}
+              text={`Ok!`}
+              class={`${components.button.default} ${colour.background.neutral} px-5`}
+            />
+          </>
+        }
+      />
+      <DefaultDialog
+        open={experience}
+        close={() => setExperience(false)}
+        icon={experiences_deets.icon}
+        title={experiences_deets.company}
+        description={experiences_deets.position}
+        details={experiences_deets.details}
+        action={
+          <>
+            <DefaultButton
+              click={() => setExperience(false)}
+              icon={null}
+              text={`Ok!`}
+              class={`${components.button.default} ${colour.background.neutral} px-5`}
+            />
+          </>
+        }
+      />
     </main>
   );
 }

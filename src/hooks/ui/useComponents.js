@@ -3,8 +3,11 @@ import { useState } from "react";
 export default function useComponents() {
   const [components, setComponents] = useState({
     button: {
-      textonly: "p-2 rounded",
-      withicon: "py-2 px-3 rounded",
+      default: "p-2 rounded",
+      icon: "py-2 px-3 rounded",
+    },
+    container: {
+      default: "px-40 py-0",
     },
   });
 
